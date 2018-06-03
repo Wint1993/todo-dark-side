@@ -1,0 +1,19 @@
+<p> Id: {{data.Todo.id}}</p>
+<div mat-dialog-content>
+  <p>Description</p>
+  <mat-form-field>
+    <input matInput name="description"  ng-model="description" [(ngModel)]="data.Todo.description">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="data.Todo.date" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="saveResult(data,data.Todo.description,data.Todo.date)" [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+
+</div>

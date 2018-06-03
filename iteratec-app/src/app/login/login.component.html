@@ -1,0 +1,41 @@
+ <!--<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head> -->
+
+<div class="container">
+
+    <div align="center" class="col-md-3 col-sm-3 col-lg-3">
+
+      <div class= "panel panel-default">
+      <form name="form" (keyup.enter)="login(userInput.value, passInput.value)" novalidate>
+
+        <mat-form-field >
+          <input #userInput matInput [formControl]="usernameFormControl" [errorStateMatcher]="matcher" type="text" class="form-control" name="username" placeholder="User" #ngModel required >
+        </mat-form-field>
+
+      <!--  <mat-error *ngIf="emailFormControl.hasError('required')">
+          Username is <strong>required</strong>
+        </mat-error> -->
+
+        <p></p>
+
+        <mat-form-field>
+          <input #passInput matInput type="password" class="form-control" name="password" placeholder="Password">
+        </mat-form-field>
+
+        <p></p>
+        <mat-error *ngIf="loginFail">
+          Incorrect username or password!
+        </mat-error>
+        <p></p>
+        <p></p>
+        <button mat-raised-button color="primary" (click)="login(userInput.value, passInput.value)">Login</button>
+
+
+    </form>
+      </div>
+    </div>
+
+</div>

@@ -1,0 +1,54 @@
+<!--<app-header></app-header> -->
+
+
+<!--<p *ngIf="TodoComponent.loading"
+   class="lead">Loading...</p> -->
+
+<div class="example-container mat-elevation-z8">
+  <table mat-table #table [dataSource]="dataSource1" matSort>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef > Actions </th>
+      <td mat-cell *matCellDef="let element"> <!--{{element.description}} -->
+        <button mat-mini-fab (click)="openEditDialog(element)" color="success">E</button> &nbsp;
+        <button mat-mini-fab (click)="openRemoveDialog(element)" color="warn">D</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+  <div class="wrapper">
+     <button mat-mini-fab (click)="refresh_1()" color="accent"> Syn </button>
+</div>
+  <p></p>
+  <div class="wrapper">
+    <button mat-raised-button (click)="openCreateDialog()" color="primary">Create</button>
+  </div>
+
+
+</div>

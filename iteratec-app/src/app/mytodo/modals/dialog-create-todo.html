@@ -1,0 +1,29 @@
+
+<form [formGroup]="form">
+
+<div mat-dialog-content>
+  <p>Description</p>
+
+  <div class="form-group" [ngClass]="displayFieldCss('description')">
+
+    <mat-form-field>   <!-- [(ngModel)]="data.description"-->
+      <input matInput minlength="3" id="description" formControlName="description"  class="form-control" name="description" required>
+    </mat-form-field>
+    <app-field-error-display [displayError]="isFieldValid('description')" errorMsg="Please inform your description, minimum 3 characters"></app-field-error-display>
+
+
+  </div>
+  <mat-form-field> <!-- [(ngModel)]="data.data"-->
+       <input matInput name="date" id="date" [min]="minDate" formControlName="date" [matDatepicker]="picker" placeholder="Choose a date" required>
+
+       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+     <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="saveResult(data)" [mat-dialog-close]="data" [disabled]="!form.valid" cdkFocusInitial>Save</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+</div>
+
+</form>

@@ -1,0 +1,12 @@
+<app-header></app-header>
+<mat-tab-group (selectedTabChange)="onLinkClick($event)">
+  <mat-tab label="My">
+    <app-mytodo #myTodo></app-mytodo>
+  </mat-tab>
+  <mat-tab label="History">
+    <app-history-todo #historyTodo></app-history-todo>
+  </mat-tab>
+  <mat-tab *ngIf="role=='ROLE_ADMIN'" label="All">
+    <app-todo #allTodo></app-todo>
+  </mat-tab>
+</mat-tab-group>
