@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -27,7 +28,7 @@ public class TodoServiceTest {
 
     private static final Long USER_ID = 2L;
     private static final String USERNAME = "t";
-    private static final User USER = new User(USER_ID, USERNAME);
+    private static final User TODO_USER = new User(USER_ID, USERNAME);
 
     @InjectMocks
     @Autowired
@@ -40,11 +41,14 @@ public class TodoServiceTest {
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
-        Mockito.doReturn(USER).when(userService).findUserEntityByUsername(USERNAME);
+        Mockito.doReturn(TODO_USER).when(userService).findUserEntityByUsername(USERNAME);
+
     }
 
+
+
     @Test
-    public void createShouldCreateTodo() {
+    public void createShouldCreateTodo() throws IOException {
         // given
         final String description = "Testowy opis";
         final LocalDate date = LocalDate.now();
