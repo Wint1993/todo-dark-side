@@ -1,22 +1,21 @@
 package com.iteratec.todo.bc.ouathusers.dao.entity;
 
 import com.iteratec.todo.bc.user.dao.entity.User;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 
 @Entity
 @Table(name = "oauthuser")
-public class OAuthUser //implements UserDetails {
-{
+public class OAuthUser  {
+
+    //static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
+    String username;
 
     private String password;
 
@@ -40,6 +39,14 @@ public class OAuthUser //implements UserDetails {
         this.password = password;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -47,43 +54,4 @@ public class OAuthUser //implements UserDetails {
     public String getPassword() {
         return password;
     }
-
-
-
-/*   @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return null;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }*/
-
-
 }

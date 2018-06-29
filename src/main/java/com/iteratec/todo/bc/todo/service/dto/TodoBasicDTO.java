@@ -10,6 +10,7 @@ public class TodoBasicDTO {
     private LocalDate date;
     private LocalDateTime creadtionDate;
     private String description;
+    private byte[] image;
 
     public TodoBasicDTO() {
     }
@@ -18,7 +19,7 @@ public class TodoBasicDTO {
         this.id = todo.getId();
         this.date = todo.getDate();
         this.description = todo.getDescription();
-        this.creadtionDate = todo.getCreadtionDate();
+        this.creadtionDate = todo.getCreationDate();
     }
 
     public TodoBasicDTO(LocalDate date,LocalDateTime creationDate ,String description) {
@@ -59,5 +60,11 @@ public class TodoBasicDTO {
         this.description = description;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
 
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 }

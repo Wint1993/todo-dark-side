@@ -25,7 +25,6 @@ public class Reader implements ItemReader<List<Event>> {
 
     @Override
     public List<Event> read() throws Exception {
-
         if(googleService.transportEventsFromGoogle().stream().filter(x -> !todoService.ifExistsWithTheSameCreationDate(convertToLocalDateTime(x.getCreated()))).collect(Collectors.toList()).isEmpty()){
             return null;
         }

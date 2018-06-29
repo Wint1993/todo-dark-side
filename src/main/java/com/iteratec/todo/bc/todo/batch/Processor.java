@@ -29,9 +29,6 @@ public class Processor implements ItemProcessor<List<Event>,List<TodoBasicDTO>> 
 
     @Override
     public List<TodoBasicDTO> process(List<Event> events) throws Exception {
-        System.out.println("Process");
-        Logger logger = LoggerFactory.getLogger(this.getClass());
-
         return events.stream().
                 filter(x -> !todoService.ifExistsWithTheSameCreationDate(convertToLocalDateTime(x.getCreated())))
                 .map(x -> new TodoBasicDTO(convertToLocalDate(x.getStart().getDateTime()),convertToLocalDateTime(x.getCreated()),x.getSummary()))

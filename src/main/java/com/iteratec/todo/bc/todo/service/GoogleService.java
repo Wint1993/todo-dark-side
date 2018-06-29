@@ -26,12 +26,6 @@ import java.util.List;
 @Component
 public class GoogleService {
 
-    @Autowired
-    private TodoService todoService;
-
-    @Autowired
-    private SessionService sessionService;
-
     private final String APPLICATION_NAME = "Google Calendar API Java Quickstart";
     private final String CLIENT_SECRET_DIR = "/client_secret1.json";
     private final String CREDENTIALS_FOLDER = "credentials";
@@ -40,7 +34,6 @@ public class GoogleService {
     private final List<String> SCOPES = Collections.singletonList(CalendarScopes.CALENDAR_READONLY);
 
     private GoogleAuthorizationCodeFlow flow;
-
 
     private  Credential authorize(final NetHttpTransport HTTP_TRANSPORT) throws Exception {
         final java.util.logging.Logger buggyLogger = java.util.logging.Logger.getLogger(FileDataStoreFactory.class.getName());
@@ -55,33 +48,6 @@ public class GoogleService {
                 .build();
         return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
     }
-
-   /* public void transportEventsFromGoogle() throws Exception {
-
-        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-
-        Calendar service = new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, authorize(HTTP_TRANSPORT))
-                .setApplicationName(APPLICATION_NAME)
-                .build();
-
-        DateTime now = new DateTime(System.currentTimeMillis());
-        Events events = service.events().list("primary")
-                .setMaxResults(10)
-                .setTimeMin(now)
-                .setOrderBy("startTime")
-                .setSingleEvents(true)
-                .execute();
-
-        List<Event> items = events.getItems();
-        List<TodoBasicDTO> todoBasicDTOS = items.stream().
-                filter(x -> !todoService.ifExistsWithTheSameCreationDate(convertToLocalDateTime(x.getCreated())))
-                .map(x -> new TodoBasicDTO(convertToLocalDate(x.getStart().getDateTime()),convertToLocalDateTime(x.getCreated()),x.getSummary()))
-                .collect(Collectors.toList());
-
-        for (TodoBasicDTO todo: todoBasicDTOS) {
-            todoService.create(todo,"admin");
-        }
-    }*/
 
     public List<Event> transportEventsFromGoogle() throws Exception {
 
@@ -101,5 +67,4 @@ public class GoogleService {
 
         return events.getItems();
     }
-
 }

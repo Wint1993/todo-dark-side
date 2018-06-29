@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "todo_user")
 public class User {
 
     @Id
@@ -73,13 +74,19 @@ public class User {
         this.enabled = enabled;
     }
 
-
-
     public List<Todo> getTodos() {
         return todos;
     }
 
     public void setTodos(List<Todo> todos) {
         this.todos = todos;
+    }
+
+    public OAuthUser getoAuthUser() {
+        return oAuthUser;
+    }
+
+    public void setoAuthUser(OAuthUser oAuthUser) {
+        this.oAuthUser = oAuthUser;
     }
 }
